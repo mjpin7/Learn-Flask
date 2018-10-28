@@ -10,12 +10,22 @@
         <!-- For the username input -->
         <p>
             {{ form.username.label }}<br>
-            {{ form.username(size=32) }}
+            {{ form.username(size=32) }}<br>
+
+            <!-- For errors in validation with usernames -->
+            {% for error in form.username.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
         </p>
         <!-- For the password input -->
         <p>
             {{ form.password.label }}<br>
-            {{ form.password(size=32) }}
+            {{ form.password(size=32) }}<br>
+
+            <!-- For errors in validation of password -->
+            {% for error in form.password.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
         </p>
         <!-- Checkbox for remember me -->
         <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
