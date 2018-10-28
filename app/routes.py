@@ -2,6 +2,7 @@ from app import app
 from flask import render_template
 from app.forms import LoginForm
 
+# When on the paths '/' and '/index', run the index method
 @app.route('/')
 @app.route('/index')
 def index():
@@ -18,6 +19,7 @@ def index():
     ]
     return render_template('index.html', title="Home", user=user, posts=posts)
 
+# When on the '/login' path, run the login method to render the login page to the browser
 @app.route('/login')
 def login():
     form = LoginForm()

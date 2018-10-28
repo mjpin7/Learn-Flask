@@ -1,17 +1,23 @@
+<!-- html file for a login page, extending the base html file -->
 {% extends "base.html" %}
 
 {% block content %}
     <h1>Sign In</h1>
     <form action="" method="post" novalidate>
+        <!-- This generates a hidden field that includes a token used to protect against CSRF attacks -->
         {{ form.hidden_tag() }}
+
+        <!-- For the username input -->
         <p>
             {{ form.username.label }}<br>
             {{ form.username(size=32) }}
         </p>
+        <!-- For the password input -->
         <p>
             {{ form.password.label }}<br>
             {{ form.password(size=32) }}
         </p>
+        <!-- Checkbox for remember me -->
         <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
         <p>{{ form.submit() }}</p>
     </form>

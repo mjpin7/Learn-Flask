@@ -1,5 +1,7 @@
+<!-- A base html file to be extended upon -->
 <html>
     <head>
+        <!-- Set the title -->
         {% if title %}
         <title>{{ title }}</title>
         {% else %}
@@ -7,12 +9,15 @@
         {% endif %}
     </head>
     <body>
+        <!-- Create a navbar -->
         <div>
             Test: 
             <a href="/index">Home</a>
             <a href="/login">Login</a>
         </div>
         <hr>
+
+        <!-- This is where the extended content will go -->
         {% block content %}{% endblock %}
     </body>
 </html>
