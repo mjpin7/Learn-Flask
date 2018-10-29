@@ -1,7 +1,7 @@
 from app import db
 from datetime import datetime
 
-# Class. Contains the initial db schema for User
+# Class containing the initial db schema for User
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
