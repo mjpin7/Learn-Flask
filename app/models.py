@@ -1,5 +1,6 @@
 from app import db
 from datetime import datetime
+from werkzeug.security import generate_password_hash, check_password_hash
 
 # Class containing the initial db schema for User
 class User(db.Model):
@@ -12,6 +13,14 @@ class User(db.Model):
     # Method to tell how to print the objects of this class
     def __repr__(self):
         return '<User {}>'.format(self.username)
+
+    # Function to set the password hash based on the inputted password
+    def set_password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    # Function to check the password hash against the password
+    def check_password(self, password):
+        return check_password_hash(self.password_hash, password)
 
 # Class containing the initial db schema for a Post
 class Post(db.Model):
