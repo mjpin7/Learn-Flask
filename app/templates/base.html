@@ -13,10 +13,17 @@
         <div>
             Test: 
             <a href="{{ url_for('index') }}">Home</a>
+
+            <!-- Checks if user is logged in and displays what is needed -->
+            {% if current_user.is_anonymous %}
             <a href="{{ url_for('login') }}">Login</a>
+            {% else %}
+            <a href="{{ url_for('logout') }}">Logout</a>
+            {% endif %}
         </div>
         <hr>
         
+        <!-- This is the section that displays the flashed messages -->
         {% with messages = get_flashed_messages() %}
         {% if messages %}
         <ul>
