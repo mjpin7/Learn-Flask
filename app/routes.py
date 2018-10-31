@@ -56,6 +56,7 @@ def login():
     
     return render_template('login.html', title='Sign In', form=form)
 
+# When the login button is clicked, log the user out and then redirect
 @app.route('/logout')
 def logout():
     logout_user()

@@ -5,6 +5,8 @@ from flask_login import UserMixin
 
 # Class containing the initial db schema for User
 class User(UserMixin, db.Model):
+    
+    # This is the schema for the User table
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(120), index=True, unique=True)
@@ -25,6 +27,8 @@ class User(UserMixin, db.Model):
 
 # Class containing the initial db schema for a Post
 class Post(db.Model):
+
+    # This is the schema for the Post table
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.String(140))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
