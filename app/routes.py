@@ -1,6 +1,6 @@
-from app import app
+from app import app, db
 from flask import render_template, flash, redirect, url_for, request
-from app.forms import LoginForm
+from app.forms import LoginForm, RegistrationForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User
 from werkzeug.urls import url_parse
@@ -61,3 +61,25 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('index'))
+
+# When you go to registration link
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    # Check if the user is logged in first
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+    
+    # Create the form
+    form = RegistrationForm()
+
+    # Execute when the form has been submitted
+    if form.validate_on_submit():
+        # Create the new user. Set the password and add the user to the database
+        user = User(username=form.username.data, email=form.email.data)
+        user.set_password(form.password.data)
+        db.session.add(user)
+        db.session.commit()
+        flash('New user registered!')
+        return redirect(url_for('login'))
+    
+    return render_template('register.html', title="Register", form=form)

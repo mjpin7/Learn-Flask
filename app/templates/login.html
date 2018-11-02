@@ -27,6 +27,10 @@
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
+
+        <!-- Link for new users to register -->
+        <p>New User? <a href="{{ url_for('register') }}">Click to Register!</a></p>
+        
         <!-- Checkbox for remember me -->
         <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
         <p>{{ form.submit() }}</p>
