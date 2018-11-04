@@ -83,3 +83,20 @@ def register():
         return redirect(url_for('login'))
     
     return render_template('register.html', title="Register", form=form)
+
+# Return when a user goes on a persons profile page. The user must be logged in to do this action
+@app.route('/user/<username>')
+@login_required
+def user(username):
+    # Query the user or return a 404 not found
+    user = User.query.filter_by(username=username).first_or_404()
+
+    # Test posts
+    posts = [
+        {'author': user, 'body': 'Test post #1'},
+        {'author': user, 'body': 'Test post #2'}
+    ]
+
+    return render_template('user.html', user=user, posts=posts)
+
+
