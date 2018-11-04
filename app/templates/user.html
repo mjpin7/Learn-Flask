@@ -9,6 +9,8 @@
     </table>
     <hr>
     {% for post in posts %}
+
+        <!-- Include the subtemplate for post -->
         {% include '_post.html' %}
     {% endfor %}
 {% endblock %}
