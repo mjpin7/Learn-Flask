@@ -4,6 +4,7 @@ from app.forms import LoginForm, RegistrationForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User
 from werkzeug.urls import url_parse
+from datetime import datetime
 
 # When on the paths '/' and '/index', run the index method. Login is required to view this
 @app.route('/')
@@ -98,5 +99,14 @@ def user(username):
     ]
 
     return render_template('user.html', user=user, posts=posts)
+
+# The before_request executes before the view functions are done
+@app._before_request
+def before_request():
+
+    # Checks if the current user is logged in, and if so set the last seen to the current time
+    if current_user.is_authenticated:
+        current_user.last_seen = datetime.utcnow()
+        db.session.commit()
 
 
