@@ -32,7 +32,7 @@ MyBlog web app created with Python and Flask.
    - No need for install
    - Used for generating/verifying password hashs (with salt) as well as parsing urls
 
-   ### <a name-'flask-log></a>Flask-Login
+   ### <a name-'flask-log'></a>Flask-Login
    - Install using "pip install flask-login"
    - Manages user logged in state
 
