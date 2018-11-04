@@ -22,6 +22,7 @@ MyBlog web app created with Python and Flask.
    - Install using "pip install flask-sqlalchemy"
    - Used as a flask wrapper to sqlalchemy package
    - Allows management of databases using classes, objects and methods
+   - Database models are held in app/models.py
 
    #### <a name='flask-mig'></a>Flask-Migrate
    - Install using "pip install flask-migrate"
