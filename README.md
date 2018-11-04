@@ -1,4 +1,5 @@
 # MyBlog
+*** Currently in development ***
 MyBlog web app created with Python and Flask. 
 
 ## Contents
