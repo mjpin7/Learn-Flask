@@ -1,10 +1,19 @@
 from app import app, db
 from flask import render_template, flash, redirect, url_for, request
-from app.forms import LoginForm, RegistrationForm
+from app.forms import LoginForm, RegistrationForm, EditProfileForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User
 from werkzeug.urls import url_parse
 from datetime import datetime
+
+# The before_request executes before the view functions are done
+@app.before_request
+def before_request():
+
+    # Checks if the current user is logged in, and if so set the last seen to the current time
+    if current_user.is_authenticated:
+        current_user.last_seen = datetime.utcnow()
+        db.session.commit()
 
 # When on the paths '/' and '/index', run the index method. Login is required to view this
 @app.route('/')
@@ -100,13 +109,26 @@ def user(username):
 
     return render_template('user.html', user=user, posts=posts)
 
-# The before_request executes before the view functions are done
-@app._before_request
-def before_request():
+# For when a user wants to edit their profile, must be logged in
+@app.route('/edit_profile', methods=['GET', 'POST'])
+@login_required
+def edit_profile():
+    form = EditProfileForm()
 
-    # Checks if the current user is logged in, and if so set the last seen to the current time
-    if current_user.is_authenticated:
-        current_user.last_seen = datetime.utcnow()
+    # If the form has been submitted
+    if form.validate_on_submit():
+        current_user.username = form.username.data
+        current_user.bio = form.bio.data
         db.session.commit()
+        flash('Your changes have been saved')
+        return redirect(url_for('edit_profile'))
+    # When the page loads, prepopulate the fields with the current user info
+    elif request.method == 'GET':
+        form.username.data = current_user.username
+        form.bio.data = current_user.bio
+    
+    return render_template('edit_profile.html', title="Edit Profile", form=form)
+
+
 
 
