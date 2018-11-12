@@ -1,0 +1,25 @@
+2018-11-11 20:43:05,693 INFO: MyBlog startup [in C:\Users\MJ\Documents\Projects\Backend\MyBlog\app\__init__.py:55]
+2018-11-11 20:43:13,744 ERROR: Exception on /edit_profile [GET] [in c:\users\mj\appdata\local\programs\python\python37-32\lib\site-packages\flask\app.py:1560]
+Traceback (most recent call last):
+  File "c:\users\mj\appdata\local\programs\python\python37-32\lib\site-packages\flask\app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\mj\appdata\local\programs\python\python37-32\lib\site-packages\flask\app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\mj\appdata\local\programs\python\python37-32\lib\site-packages\flask\app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\mj\appdata\local\programs\python\python37-32\lib\site-packages\flask\_compat.py", line 33, in reraise
+    raise value
+  File "c:\users\mj\appdata\local\programs\python\python37-32\lib\site-packages\flask\app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\mj\appdata\local\programs\python\python37-32\lib\site-packages\flask\app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\users\mj\appdata\local\programs\python\python37-32\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\Users\MJ\Documents\Projects\Backend\MyBlog\app\routes.py", line 116, in edit_profile
+    form = EditProfileForm(current_user.username)
+  File "c:\users\mj\appdata\local\programs\python\python37-32\lib\site-packages\wtforms\form.py", line 212, in __call__
+    return type.__call__(cls, *args, **kwargs)
+  File "C:\Users\MJ\Documents\Projects\Backend\MyBlog\app\forms.py", line 46, in __init__
+    super(EditProfileForm, self).__init__(*args, **kwargs)
+NameError: name 'self' is not defined
+2018-11-11 20:44:44,569 INFO: MyBlog startup [in C:\Users\MJ\Documents\Projects\Backend\MyBlog\app\__init__.py:55]

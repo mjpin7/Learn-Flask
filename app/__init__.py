@@ -44,7 +44,7 @@ if not app.debug:
         app.logger.addHandler(mail_handler)
 
     # This creates an error log file in the logs directory
-    if not os.path.exists('log'):
+    if not os.path.exists('logs'):
         os.mkdir('logs')
     file_handler = RotatingFileHandler('logs/myblog.log', maxBytes=10240, backupCount=10)
     file_handler.setFormatter(logging.Formatter('%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]'))
