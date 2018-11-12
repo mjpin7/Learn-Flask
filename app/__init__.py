@@ -19,4 +19,4 @@ login = LoginManager(app)
 # Sets the login view, this is used for forcing users to login to view certain pages
 login.login_view = 'login'
 
-from app import routes, models
+from app import routes, models, errors
